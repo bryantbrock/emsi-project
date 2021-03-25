@@ -7,6 +7,7 @@
   const {jobs, jobsGrowth, earnings} = data
 
   const withOperator = val => (val > 0 ? '+' : '-') + `${val}`
+  const perHour = val => `\$${val}/hr`
   const dateRange = `${jobsGrowth.startYear}-${jobsGrowth.endYear}`
 </script>
 
@@ -16,22 +17,22 @@
     <ul>
       <li style="border-right: 1px solid #dbdbdb;">
         <span class="base">{withCommas(jobs.regional)}</span>
-        <span class="second">Jobs({jobs.year})</span>
+        <span class="second">Jobs ({jobs.year})</span>
         <span class="third">
           {withCommas(jobs.nationalAvg)}% <span class="primary">above</span> National average
         </span>
       </li>
       <li style="border-right: 1px solid #dbdbdb;">
         <span class="base primary">{withOperator(jobsGrowth.regional)}%</span>
-        <span class="second">% change({dateRange})</span>
+        <span class="second">% change ({dateRange})</span>
         <span class="third">
           Nation: <span class="primary">{withOperator(jobsGrowth.nationalAvg)}</span>
         </span>
       </li>
       <li>
-        <span class="base">{`\$${earnings.regional}/hr`}</span>
+        <span class="base">{perHour(earnings.regional)}</span>
         <span class="second">Median Hourly Earnings</span>
-        <span class="third">Nation: {`\$${earnings.nationalAvg}/hr`}</span>
+        <span class="third">Nation: {perHour(earnings.nationalAvg)}</span>
       </li>
     </ul>
   </div>

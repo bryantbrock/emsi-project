@@ -27,3 +27,15 @@ export const keysToCamelCase = data => {
 
 export const withCommas = number =>
   number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+
+export const getYears = (start, end, result = [], counter = 1) => {
+  if (start == end) {
+    return result.concat(end)
+  }
+
+  result = result.concat(start)
+  counter += 1
+
+  return getYears(start + 1, end, result, counter)
+}
