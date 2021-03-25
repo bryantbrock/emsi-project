@@ -52,6 +52,7 @@
 	.wrapper {
 		width: 95%;
 		margin: auto;
+		max-width: 1200px;
 	}
 	.loading {
 		text-align: center;
