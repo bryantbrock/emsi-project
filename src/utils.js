@@ -1,4 +1,8 @@
 
+// Only goes two levels deep - needs
+// more engineering to recursively
+// go as far down as necessary.
+
 export const keysToCamelCase = data => {
   let result = {}
 
@@ -11,8 +15,15 @@ export const keysToCamelCase = data => {
     const newKey = [arrayValues[0], ...upperValues].join('')
     const value = data[key]
 
-    result[newKey] = value
+    if (typeof value === 'object') {
+      result[newKey] = keysToCamelCase(value)
+    } else {
+      result[newKey] = value
+    }
   })
 
   return result
 }
+
+export const withCommas = number =>
+  number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

@@ -17,32 +17,48 @@
 		// To avoid flashes keep spinner running
 		// for a little longer.
 		setTimeout(() => {loading = false}, 200)
+
+		// Remove when completed
+		console.log(data)
   })
 </script>
 
 <main>
-	{#if loading}
-		<div class="loading">Loading... please wait.</div>
-		<Spinner />
-	{:else}
+	<div class="wrapper">
+		{#if loading}
 
-		<h1>Occupation Overview</h1>
-		<p>{data.occupation.title} in {data.region.title}</p>
+			<div class="loading">Loading... please wait.</div>
+			<Spinner />
 
-		<Summary data={data.summary} />
-		<Trends data={data.trendComparison} />
-		<Industries data={data.employingIndustries} />
+		{:else}
 
-	{/if}
+			<h1 class="title">Occupation Overview</h1>
+			<p>{data.occupation.title} in {data.region.title}</p>
+
+			<Summary data={data.summary} occupation={data.occupation.title} />
+			<Trends data={data.trendComparison} />
+			<Industries data={data.employingIndustries} />
+
+		{/if}
+	</div>
 </main>
 
 <style>
 	* {
 		font-family: 'Roboto', sans-serif;
+		color: #252525;
 	}
 
+	.wrapper {
+		width: 95%;
+		margin: auto;
+	}
 	.loading {
 		text-align: center;
 		padding: 2em;
+	}
+	.title {
+		padding-top: 20px;
+		line-height: .5;
 	}
 </style>
