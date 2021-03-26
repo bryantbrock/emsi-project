@@ -9,7 +9,7 @@ git clone https://github.com/bryantbrock/emsi-project.git
 
 Then, run
 ```
-npm install && npm run dev
+cd emsi-project && npm install && npm run dev
 ```
 
 And there you have it!
