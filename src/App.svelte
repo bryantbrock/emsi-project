@@ -15,9 +15,6 @@
 		// To avoid flashes keep spinner running
 		// for a little longer.
 		setTimeout(() => {loading = false}, 200)
-
-		// Remove when completed
-		console.log(data)
   })
 </script>
 

@@ -1,5 +1,5 @@
 <script>
-  import { getYears, cumsumPctChange, withCommas } from '../utils';
+  import { getYears, pctFromStart, withCommas } from '../utils';
   import { onMount } from "svelte";
   import { Table } from '../components'
   import Chart from 'chart.js';
@@ -12,10 +12,24 @@
   const stateValues = Object.values(state)
   const nationValues = Object.values(nation)
 
-  const regionalDataset = {borderColor: "rgb(135,206,250)", data: cumsumPctChange(nationValues)}
-  const stateDataset = {borderColor: "rgb(30,144,255)", data: cumsumPctChange(stateValues)}
-  const nationDataset = {borderColor: "rgb(0,0,128)", data: cumsumPctChange(regionalValues)}
-  const baseDataset = {lineTension: 0.5, backgroundColor: "rgba(0,0,0,0)"}
+  console.log(pctFromStart(nationValues))
+
+  const regionalDataset = {
+    label: 'Nation',
+    borderColor: "rgb(135,206,250)",
+    data: pctFromStart(nationValues),
+  }
+  const stateDataset = {
+    label: 'State',
+    borderColor: "rgb(30,144,255)",
+    data: pctFromStart(stateValues),
+  }
+  const nationDataset = {
+    label: 'Region',
+    borderColor: "rgb(0,0,128)",
+    data: pctFromStart(regionalValues),
+  }
+  const baseDataset = {lineTension: 0.3, backgroundColor: "rgba(0,0,0,0)"}
 
   let chartData = {
     labels: getYears(startYear, endYear),
@@ -29,6 +43,7 @@
     responsive: true,
     scales: {yAxes: [{scaleLabel: {display: true, labelString: 'Percent Change'}}]},
     legend: {display: false},
+    plugins: {tooltip: {callbacks: {label: context => context.dataset.label}}},
   };
 
   onMount(() => new Chart(chartRef, {
