@@ -12,7 +12,7 @@
 </script>
 
 <section>
-  <p class="title">Occupation Summary for {occupation}</p>
+  <h2 class="title">Occupation Summary for {occupation}</h2>
   <div>
     <ul>
       <li style="border-right: 1px solid #dbdbdb;">
@@ -22,7 +22,7 @@
           {withCommas(jobs.nationalAvg)}% <span class="primary">above</span> National average
         </span>
       </li>
-      <li style="border-right: 1px solid #dbdbdb;">
+      <li style="border-right:1px solid #dbdbdb;width:30%;">
         <span class="base primary">{withOperator(jobsGrowth.regional)}%</span>
         <span class="second">% change ({dateRange})</span>
         <span class="third">
@@ -39,6 +39,9 @@
 </section>
 
 <style>
+  h2 {
+    font-size: 1.2em;
+  }
   ul {
     list-style-type: none;
     display: flex;
@@ -58,7 +61,7 @@
   }
   .title {
     font-weight: bold;
-    padding-top: 40px;
+    padding-top: 20px;
   }
   .base {
     flex-grow: 1;

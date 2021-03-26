@@ -12,9 +12,7 @@
   const stateValues = Object.values(state)
   const nationValues = Object.values(nation)
 
-  console.log(pctFromStart(nationValues))
-
-  const regionalDataset = {
+  const nationDataset = {
     label: 'Nation',
     borderColor: "rgb(135,206,250)",
     data: pctFromStart(nationValues),
@@ -24,7 +22,7 @@
     borderColor: "rgb(30,144,255)",
     data: pctFromStart(stateValues),
   }
-  const nationDataset = {
+  const regionalDataset = {
     label: 'Region',
     borderColor: "rgb(0,0,128)",
     data: pctFromStart(regionalValues),
@@ -56,25 +54,29 @@
     {region: 'Nation', values: nationValues},
   ]
   const tableHeaders = [
-    '', 'Region',
-    `${startYear} Jobs`,
-    `${endYear} Jobs`,
-    'Change',
-    '% Change'
+    {data: '', class: 'pr-2'},
+    {data: 'Region', class: 'w-40 text-left'},
+    {data: `${startYear} Jobs`, class: 'text-right'},
+    {data: `${endYear} Jobs`, class: 'text-right'},
+    {data: 'Change', class: 'text-right'},
+    {data: '% Change', class: 'text-right'},
   ]
   const tableData = lineData.map(({region, values}) => [
-    '', region,
-    withCommas(values[0]),
-    withCommas(values[values.length-1]),
-    withCommas(values[values.length-1] - values[0]),
-    withCommas((((values[values.length-1] / values[0]) - 1) * 100).toFixed(2)) + '%',
+    {data: '-----', class: `${region}`}, region,
+    {data: withCommas(values[0]), class: 'text-right'},
+    {data: withCommas(values[values.length-1]), class: 'text-right'},
+    {data: withCommas(values[values.length-1] - values[0]), class: 'text-right'},
+    {
+      data: withCommas((((values[values.length-1] / values[0]) - 1) * 100).toFixed(2)) + '%',
+      class: 'text-right',
+    },
   ])
 </script>
 
 
 <section>
   <div class="trend-wrapper">
-    <p class="trend-title">Regional Trends</p>
+    <h2 class="trend-title">Regional Trends</h2>
     <canvas bind:this={chartRef} height={90}></canvas>
     <Table headers={tableHeaders} data={tableData} />
   </div>
@@ -82,8 +84,11 @@
 
 
 <style>
+  h2 {
+    font-size: 1.2em;
+  }
   .trend-wrapper {
-    padding-top: 30px;
+    padding-top: 20px;
   }
   .trend-title {
     font-weight: bold;

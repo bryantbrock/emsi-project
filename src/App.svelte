@@ -28,7 +28,7 @@
 		{:else}
 
 			<h1 class="title">Occupation Overview</h1>
-			<p>{data.occupation.title} in {data.region.title}</p>
+			<h2>{data.occupation.title} in {data.region.title}</h2>
 
 			<Summary data={data.summary} occupation={data.occupation.title} />
 			<Trends data={data.trendComparison} />
@@ -46,7 +46,10 @@
 	main {
       padding-bottom: 50px;
   }
-
+	h2 {
+    font-size: 1.2em;
+		font-weight: normal;
+	}
 	.wrapper {
 		width: 95%;
 		margin: auto;
