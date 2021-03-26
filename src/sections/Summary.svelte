@@ -1,5 +1,5 @@
 <script>
-  import { withCommas } from './utils'
+  import { withCommas } from '../utils'
 
   export let data;
   export let occupation;

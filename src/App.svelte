@@ -1,10 +1,8 @@
 <script>
 	import { onMount } from "svelte";
 	import { keysToCamelCase } from './utils'
-	import Trends from './Trends.svelte';
-	import Summary from './Summary.svelte';
-	import Spinner from './Spinner.svelte';
-	import Industries from './Industries.svelte';
+	import { Trends, Summary, Industries} from './sections';
+	import { Spinner } from './components';
 
 	let data = {};
 	let loading = true;
@@ -37,7 +35,7 @@
 
 			<Summary data={data.summary} occupation={data.occupation.title} />
 			<Trends data={data.trendComparison} />
-			<Industries data={data.employingIndustries} />
+			<Industries data={data.employingIndustries} occupation={data.occupation.title} />
 
 		{/if}
 	</div>
@@ -48,6 +46,9 @@
 		font-family: 'Roboto', sans-serif;
 		color: #252525;
 	}
+	main {
+      padding-bottom: 50px;
+  }
 
 	.wrapper {
 		width: 95%;

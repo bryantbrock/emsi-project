@@ -1,8 +1,13 @@
 
-// Only goes two levels deep - needs
-// more engineering to recursively
-// go as far down as necessary.
+// Functions found on the web
+const cumulativeSum = arr => arr.map((sum => value => sum += value)(0))
 
+export const withCommas = number =>
+  number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+
+
+
+// Functions I created
 export const keysToCamelCase = data => {
   let result = {}
 
@@ -25,17 +30,21 @@ export const keysToCamelCase = data => {
   return result
 }
 
-export const withCommas = number =>
-  number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-
-export const getYears = (start, end, result = [], counter = 1) => {
+export const getYears = (start, end, result = []) => {
   if (start == end) {
     return result.concat(end)
   }
 
-  result = result.concat(start)
-  counter += 1
-
-  return getYears(start + 1, end, result, counter)
+  return getYears(start + 1, end, result.concat(start))
 }
+
+export const cumsumPctChange = arr =>
+  cumulativeSum(
+    arr.map((val, idx) => {
+      if (idx === 0) {
+        return 0
+      }
+
+      return ((val / arr[idx-1]) - 1) * 100
+    })
+  )
