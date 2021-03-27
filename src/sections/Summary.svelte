@@ -1,15 +1,16 @@
 <script>
-  import { withCommas } from '../utils'
+  import { withCommas } from '../utils';
 
   export let data;
   export let occupation;
 
-  const {jobs, jobsGrowth, earnings} = data
+  const {jobs, jobsGrowth, earnings} = data;
 
-  const withOperator = val => (val > 0 ? '+' : '-') + `${val}`
-  const perHour = val => `\$${val}/hr`
-  const dateRange = `${jobsGrowth.startYear}-${jobsGrowth.endYear}`
+  const withOperator = val => (val > 0 ? '+' : '-') + `${val}`;
+  const perHour = val => `\$${val}/hr`;
+  const dateRange = `${jobsGrowth.startYear}-${jobsGrowth.endYear}`;
 </script>
+
 
 <section>
   <h2 class="title">Occupation Summary for {occupation}</h2>
@@ -37,6 +38,7 @@
     </ul>
   </div>
 </section>
+
 
 <style>
   h2 {

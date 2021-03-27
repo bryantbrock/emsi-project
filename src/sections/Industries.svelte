@@ -9,10 +9,10 @@
   const tableHeaders = [
     {data: '', class: 'pr-2'},
     {data: 'Industry', class: 'w-60 text-left'},
-    {data: `Occupation Jobs in Industry (${year})`, class: 'text-right m-w40'},
-    {data: `% of Occupation in Industry (${year})`, class: 'text-right m-w40'},
-    {data: `% of Total Jobs in Industry (${year})`, class: 'text-right m-w40'},
-  ]
+    {data: `Occupation Jobs <br>in Industry <br>(${year})`, class: 'text-right m-w40 pr-1'},
+    {data: `% of Occupation <br>in Industry <br>(${year})`, class: 'text-right m-w40 pr-1'},
+    {data: `% of Total Jobs <br>in Industry <br>(${year})`, class: 'text-right m-w40'},
+  ];
   const tableData = Object.values(industries).map(
     ({title, inOccupationJobs, jobs}) => [
       '', title,
@@ -20,8 +20,9 @@
       {data: withCommas(((inOccupationJobs / totalJobs) * 100).toFixed(1)) + '%', class: 'text-right'},
       {data: withCommas(((inOccupationJobs / jobs) * 100).toFixed(1)) + '%', class: 'text-right'},
     ]
-  )
+  );
 </script>
+
 
 <section>
   <div class="industries-wrapper">

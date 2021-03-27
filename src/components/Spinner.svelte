@@ -1,6 +1,7 @@
 
 <div class='spinner' />
 
+
 <style>
   @keyframes spinner {
     to {transform: rotate(360deg);}

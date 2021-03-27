@@ -3,6 +3,8 @@
 export const withCommas = number =>
   number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
+export const cumulativeSum = arr => arr.map((sum => value => sum += value)(0))
+
 
 
 // Functions I created
@@ -36,14 +38,10 @@ export const getYears = (start, end, result = []) => {
   return getYears(start + 1, end, result.concat(start))
 }
 
-export const pctFromStart = arr => {
-  const initialValue = arr[0]
-
-  return arr.map((val, idx) => {
+export const toPctChange = arr =>
+  arr.map((val, idx) => {
     if (idx === 0) {
       return 0
     }
-
-    return ((val / initialValue) - 1) * 100
+    return ((val / arr[idx-1]) - 1) * 100
   })
-}

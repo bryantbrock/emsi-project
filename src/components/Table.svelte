@@ -16,7 +16,7 @@
         {#if typeof header === 'string'}
           <th>{header}</th>
         {:else}
-          <th class={header.class}>{header.data}</th>
+          <th class={header.class}>{@html header.data}</th>
         {/if}
       {/each}
     </tr>
@@ -35,6 +35,7 @@
     {/each}
   </tbody>
 </table>
+
 
 <style>
   th, td {
@@ -59,6 +60,9 @@
   }
   .pr-2 {
     padding-right: 2em;
+  }
+  .pr-1 {
+    padding-right: 1em;
   }
   .w-40 {
     width: 40%;

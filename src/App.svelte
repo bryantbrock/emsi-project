@@ -6,17 +6,19 @@
 
 	let data = {};
 	let loading = true;
+	let baseUrl = 'https://run.mocky.io/v3';
 
 	onMount(async () => {
-    await fetch('https://run.mocky.io/v3/a2cc3707-8691-4188-8413-6183a7bb3d32')
+    await fetch(baseUrl + '/a2cc3707-8691-4188-8413-6183a7bb3d32')
       .then(res => res.json())
 			.then(raw => {data = keysToCamelCase(raw)})
 
 		// To avoid flashes keep spinner running
 		// for a little longer.
 		setTimeout(() => {loading = false}, 200)
-  })
+  });
 </script>
+
 
 <main>
 	<div class="wrapper">
@@ -37,6 +39,7 @@
 		{/if}
 	</div>
 </main>
+
 
 <style>
 	* {

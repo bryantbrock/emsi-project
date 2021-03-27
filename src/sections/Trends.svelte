@@ -1,35 +1,35 @@
 <script>
-  import { getYears, pctFromStart, withCommas } from '../utils';
+  import { getYears, toPctChange, withCommas, cumulativeSum } from '../utils';
   import { onMount } from "svelte";
-  import { Table } from '../components'
+  import { Table } from '../components';
   import Chart from 'chart.js';
 
   export let data;
   let chartRef;
 
-  const {startYear, endYear, state, regional, nation} = data
-  const regionalValues = Object.values(regional)
-  const stateValues = Object.values(state)
-  const nationValues = Object.values(nation)
+  const {startYear, endYear, state, regional, nation} = data;
+  const regionalValues = Object.values(regional);
+  const stateValues = Object.values(state);
+  const nationValues = Object.values(nation);
 
   const nationDataset = {
     label: 'Nation',
     borderColor: "rgb(135,206,250)",
-    data: pctFromStart(nationValues),
-  }
+    data: cumulativeSum(toPctChange(nationValues)),
+  };
   const stateDataset = {
     label: 'State',
     borderColor: "rgb(30,144,255)",
-    data: pctFromStart(stateValues),
-  }
+    data: cumulativeSum(toPctChange(stateValues)),
+  };
   const regionalDataset = {
     label: 'Region',
     borderColor: "rgb(0,0,128)",
-    data: pctFromStart(regionalValues),
-  }
-  const baseDataset = {lineTension: 0.3, backgroundColor: "rgba(0,0,0,0)"}
+    data: cumulativeSum(toPctChange(regionalValues)),
+  };
+  const baseDataset = {lineTension: 0.3, backgroundColor: "rgba(0,0,0,0)"};
 
-  let chartData = {
+  const chartData = {
     labels: getYears(startYear, endYear),
     datasets: [
       Object.assign({}, baseDataset, regionalDataset),
@@ -37,7 +37,7 @@
       Object.assign({}, baseDataset, nationDataset),
     ]
   };
-  let options = {
+  const options = {
     responsive: true,
     scales: {yAxes: [{scaleLabel: {display: true, labelString: 'Percent Change'}}]},
     legend: {display: false},
@@ -52,7 +52,7 @@
     {region: 'Region', values: regionalValues},
     {region: 'State', values: stateValues},
     {region: 'Nation', values: nationValues},
-  ]
+  ];
   const tableHeaders = [
     {data: '', class: 'pr-2'},
     {data: 'Region', class: 'w-40 text-left'},
@@ -60,7 +60,7 @@
     {data: `${endYear} Jobs`, class: 'text-right'},
     {data: 'Change', class: 'text-right'},
     {data: '% Change', class: 'text-right'},
-  ]
+  ];
   const tableData = lineData.map(({region, values}) => [
     {data: '-----', class: `${region}`}, region,
     {data: withCommas(values[0]), class: 'text-right'},
@@ -70,7 +70,7 @@
       data: withCommas((((values[values.length-1] / values[0]) - 1) * 100).toFixed(2)) + '%',
       class: 'text-right',
     },
-  ])
+  ]);
 </script>
 
 
