@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>{occupation} - Occupation Overview</title>
+</svelte:head>
+
 <script>
   import { withCommas } from '../utils';
 

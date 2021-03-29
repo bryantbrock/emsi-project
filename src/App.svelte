@@ -4,7 +4,9 @@
 	import { Trends, Summary, Industries} from './sections';
 	import { Spinner } from './components';
 
-	let data = {};
+	let data = {
+		occupation: {}
+	};
 	let loading = true;
 	let baseUrl = 'https://run.mocky.io/v3';
 
@@ -18,7 +20,6 @@
 		setTimeout(() => {loading = false}, 200)
   });
 </script>
-
 
 <main>
 	<div class="wrapper">
